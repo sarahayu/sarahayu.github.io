@@ -1,0 +1,307 @@
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: black;
+}
+
+h1 {
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+h3 {
+    font-family: "roboto", sans-serif;
+    margin: 0 0 10px 0;
+    font-weight: 100;
+    letter-spacing: 1px;
+    font-size: 17px;
+}
+
+
+p {
+    font-family: "open sans", sans-serif;
+    font-size: 0.9em;
+    margin: 0;
+    color: dimgray;
+    letter-spacing: 0.7px;
+    line-height: 1.4;
+}
+
+html {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(244, 234, 255, 0.59);
+}
+
+
+#title {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.53);
+    font-family: monospace;
+    height: 70px;
+    margin: 20px auto 20px;
+    width: 80%;
+    padding: 0 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#title::before {
+    content: "{";
+    color: rgba(109, 102, 116, 0.59);
+    font-size: 54px;
+    font-weight: 100;
+    position: absolute;
+    left: 0;
+}
+
+#title::after {
+    content: "}";
+    color: rgba(109, 102, 116, 0.59);
+    font-size: 54px;
+    font-weight: 100;
+    position: absolute;
+    right: 0;
+}
+
+
+#body-wrapper {
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+#body-wrapper::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.project-wrapper {
+    box-sizing: border-box;
+    width: 90%;
+    margin: 10px;
+    display: inline-block;
+    text-align: left;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 1px 10px 0 rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.15s ease-in-out;
+    background-color: white;
+}
+
+.project-wrapper:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.project-image {
+    display: flex;
+    height: 180px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.project-image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.overflow-div {
+    overflow: hidden;
+    height: 100%;
+}
+
+.project-description {
+    box-sizing: border-box;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.project-description p {
+    overflow: hidden;
+}
+
+.code-type {
+    text-align: right;
+    margin-top: 8px;
+    color: darkslategray;
+    position: relative;
+    font-family: monospace;
+    letter-spacing: 2px;
+    font-size: 1.1em;
+}
+
+#about {
+    width: 90%;
+    margin: auto;
+    background-color: white;
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.1), inset 0 1px 10px 0 rgba(0, 0, 0, 0.08);
+}
+
+#about h2 {
+    color: rgb(169, 165, 173);
+    text-align: left;
+    font-family: monospace;
+    padding-left: 70px;
+    position: relative;
+    margin: 20px 0;
+    letter-spacing: 2px;
+    font-size: 30px;
+}
+
+#about h2::before {
+    z-index: 10;
+    content: "//";
+    position: absolute;
+    left: 0px;
+    font-size: 50px;
+    top: -20px;
+}
+
+#about p {
+    text-align: left;
+    padding: 0 30px 30px;
+}
+
+footer {
+    box-sizing: border-box;
+    text-align: center;
+    width: 90%;
+    height: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 40px;
+    padding: 0 80px;
+    font-size: 18px;
+    position: relative;
+}
+
+footer p {
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.53);
+}
+
+footer::before,
+footer::after {
+    font-size: 50px;
+    font-family: "roboto";
+    position: absolute;
+    color: rgba(109, 102, 116, 0.31);
+}
+
+footer::before {
+    content: "/**";
+    left: 0;
+    top: -10px;
+}
+
+footer::after {
+    content: "**/";
+    bottom: -10px;
+    right: 0;
+}
+
+@media screen and (min-width: 800px) {
+
+    h1 {
+        letter-spacing: 3px;
+        font-size: 50px;
+    }
+
+    #title {
+        height: 100px;
+        margin: 30px auto 40px;
+        width: 80%;
+        padding: 0 50px;
+    }
+
+    #title::before {
+        font-size: 90px;
+    }
+
+    #title::after {
+        font-size: 90px;
+    }
+
+    .project-image {
+        height: 180px;
+        width: 40%;
+        float: left;
+    }
+
+    .project-description {
+        width: 60%;
+    }
+
+    .project-wrapper {
+        width: 45%;
+        height: 180px;
+    }
+
+    .project-description {
+        padding: 15px;
+        height: 100%;
+    }
+
+    .code-type {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        padding-top: 20px;
+        color: darkslategray
+    }
+
+    .code-type::after {
+        content: "";
+        display: block;
+        border-top: 5px solid rgb(151, 186, 255);
+        width: 25px;
+        position: absolute;
+        right: 0;
+        bottom: 24px;
+    }
+
+    footer {
+        width: 50%;
+        height: 3em;
+        margin: 20px auto 40px;
+        padding: 0 80px;
+        position: relative;
+    }
+
+    footer::before,
+    footer::after {
+        color: rgba(109, 102, 116, 0.59);
+    }
+
+    footer::before {
+        top: -5px;
+    }
+
+    footer::after {
+        bottom: -5px;
+    }
+
+}
