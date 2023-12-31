@@ -23,13 +23,12 @@
 		const degToRad = deg => deg * 3.1415 / 180
 
 		const margin = { top: 20, right: 20, bottom: 20, left: 20 },
-			width = Math.min(window.innerWidth, window.innerHeight * 3.5 / 2) /* 1440 * 0.8 */,
-			height = window.innerHeight /* 1024 * 0.8 */;
+			width = Math.min(window.innerWidth, window.innerHeight * 3.5 / 2),
+			height = window.innerHeight;
 
 		const svg = d3.select("#sky")
 			.attr("width", width)
 			.attr("height", height)
-		// .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 		const x = d3.scaleLinear()
 			.domain([d3.min(STAR_DATA, d => d3.min(d.stars, dd => dd.x)), d3.max(STAR_DATA, d => d3.max(d.stars, dd => dd.x))])
@@ -58,31 +57,22 @@
 
 		let grid = svg
 			.append("g")
+			.attr("class", "star-grid")
 			.style("transform", `translate(${x(north[0])}px,${y(north[1])}px) rotate(15deg)`)
 
-		let gr = grid
+		grid
 			.selectAll("rads")
 			.data(d3.ticks(0, 1440, 5).slice(1))
-			.enter().append("g");
-
-		gr.append("circle")
+			.enter()
+			.append("circle")
 			.attr("r", r => r)
-			.attr("stroke", "white")
-			.attr("stroke-width", "3px")
-			.attr("fill", "none")
-			.attr("opacity", 0.04)
 
-		let ga = grid
+		grid
 			.selectAll("as")
 			.data(d3.range(0, 360, 30))
-			.enter().append("g")
-
-		ga.append("line")
+			.enter()
+			.append("line")
 			.attr("transform", function (d) { return `rotate(${-d})` })
-			.attr("stroke", "white")
-			.attr("stroke-width", "3px")
-			.attr("fill", "none")
-			.attr("opacity", 0.04)
 			.attr("x2", 1024)
 
 		svg.append('g')

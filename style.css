@@ -54,6 +54,13 @@ main {
     transform: translateX(-50%);
 }
 
+.star-grid {    
+    stroke: white;
+    stroke-width: 3px;
+    fill: none;
+    opacity: 0.04;
+}
+
 .star-let {
     font-family: 'Tangerine', cursive;
     font-weight: bold;
