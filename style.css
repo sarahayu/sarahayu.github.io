@@ -1,6 +1,7 @@
 :root {
     --primary-700: hsl(240, 73%, 10%);
     --neutral-400: hsl(0, 0%, 100%);
+    --accent-400: hsl(39, 100%, 50%);
 
     --background: var(--primary-700);
 
@@ -61,15 +62,44 @@ main {
     opacity: 0.04;
 }
 
-.star-let {
-    font-family: 'Tangerine', cursive;
-    font-weight: bold;
-    font-size: 2.3vh;
+.ignore-pointer {
+    pointer-events: none;
+}
+
+.const-group-bb {
+    pointer-events: bounding-box;
+}
+
+.const-group-bb:focus {
+    outline: none;
+}
+
+.const-group-bb:focus-visible {
+    outline: 1px solid var(--accent-400);
 }
 
 
-.star-let.hovered {
+.const-group-bb:hover {
+    cursor: pointer;
+}
+
+.const-star {
+    fill: #ffebd8;
+}
+
+.const-let {
+    font-family: 'Tangerine', cursive;
+    font-weight: bold;
+    font-size: 2.3vh;
+    dominant-baseline: middle;
+    text-anchor: middle;
+}
+
+
+.const-let.hovered {
     font-size: 6.9vh;
+    fill: var(--accent-400);
+    transition: fill 0s linear 0.2s;
 }
 
 .const-label {
@@ -80,20 +110,23 @@ main {
     font-size: 2.3vh;
     letter-spacing: 0.25em;
     fill: white;
-    pointer-events: none;
+    dominant-baseline: middle;
+    text-anchor: middle;
 }
 
-.const-group-bb:focus {
-    outline: none;
+.const-sub {
+    opacity: 0.65;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 3.45vh;
+    font-style: italic;
+    letter-spacing: 0.075em;
+    dominant-baseline: middle;
+    text-anchor: middle;
 }
 
-.const-group-bb:focus-visible {
-    outline: 1px solid orange;
-}
-
-
-.const-group-bb:hover {
-    cursor: pointer;
+.const-line {
+    stroke: rgba(255, 255, 255, 0.2);
 }
 
 .home-btn {
@@ -101,6 +134,30 @@ main {
     position: fixed;
     top: 5rem;
     left: 3rem;
+    transform: scale(0.7) rotate(-5deg);
+    transition: transform 0.15s ease-in-out, outline 0s linear 0s;
+    text-decoration: none;
+}
+
+.home-btn::after {
+    content: attr(title);
+    color: var(--accent-400);
+    opacity: 0;
+    transition: opacity 0s linear 0s;
+}
+
+.home-btn:hover, .home-btn:focus-visible {
+    transform: scale(1);
+    transition: transform 0.15s ease-in-out, outline 0s linear 0.15s;
+}
+
+.home-btn:focus-visible {
+    outline: 1px solid var(--accent-400);
+}
+
+.home-btn:focus-visible::after {
+    opacity: 1;
+    transition: opacity 0s linear 0.15s;
 }
 
 .home-btn > * {
@@ -111,18 +168,14 @@ main {
 
 .h1-spaced {
     margin-top: 1em;
-    /* display: block; */
-    /* padding: 1px; */
 }
 
 .const-page::before {
     content: '';
     inset: 0;
     position: fixed;
-    /* background-blend-mode: screen; */
     mix-blend-mode: screen;
     background-size: cover;
-    /* background-attachment: fixed; */
     z-index: -1;
     opacity: 10%;
 }
@@ -206,24 +259,30 @@ main.planets-wrapper {
     transition: box-shadow 0.15s ease-in-out;
 }
 
-.planet-link:hover {
+.planet-link:hover, .planet-link:focus-visible {
     transform: scale(0.98);
 }
 
-.planet-link:hover::after {
+.planet-link:focus-visible {
+    outline: 1px solid var(--accent-400);
+}
+
+.planet-link:hover::after, .planet-link:focus-visible::after {
     box-shadow: -19px -29px 21.2px -19px rgba(255, 255, 255, 0.90) inset;
 }
 
-.planet-link:hover::before {
+.planet-link:hover::before, .planet-link:focus-visible::before {
     box-shadow: 10px 20px 20px -6px rgba(0, 0, 0, 0.90) inset, 50px 90px 20px -35px rgba(0, 0, 0, 0.50) inset;
 }
 
-.planet-container:nth-child(odd) .planet-link:hover + .planet-link-label {
-    transform: translate(-6rem, 2rem);
+.planet-container:nth-child(odd) .planet-link:hover + .planet-link-label, 
+.planet-container:nth-child(odd) .planet-link:focus-visible + .planet-link-label {
+    transform: translate(-10rem, 2rem);
 }
 
-.planet-container:nth-child(even) .planet-link:hover + .planet-link-label {
-    transform: translate(6rem, 3rem);
+.planet-container:nth-child(even) .planet-link:hover + .planet-link-label,
+.planet-container:nth-child(even) .planet-link:focus-visible + .planet-link-label {
+    transform: translate(10rem, 3rem);
 }
 
 .planet-link > img {
