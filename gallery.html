@@ -10,67 +10,103 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,700;1,300&family=Roboto:wght@300;400&family=Tangerine:wght@700&display=swap"
         rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
     <title>Sarah Yuniar's Portfolio | Gallery</title>
 </head>
 
-<body class="const-page draco">
-    <a href="./" class="home-btn" title="Home">
-        <svg viewBox="560 45 180 70">
-            <g>
-                <g class="Cas">
-                    <path d="M569.721,105.851L585.435,57.443" stroke="rgba(255, 255, 255, 0.2)"></path>
-                    <path d="M585.435,57.443L638.315,78.426" stroke="rgba(255, 255, 255, 0.2)"></path>
-                    <path d="M638.315,78.426L673.546,55.621" stroke="rgba(255, 255, 255, 0.2)"></path>
-                    <path d="M673.546,55.621L728.681,73.711" stroke="rgba(255, 255, 255, 0.2)"></path>
+<body class="">
+    <div class="const-page" data-parallax="scroll" data-image-src="./assets/draco.png">
+        <a href="./" class="home-btn" title="Home">
+            <svg viewBox="560 45 180 70">
+                <g>
+                    <g class="Cas">
+                        <path d="M569.721,105.851L585.435,57.443" stroke="rgba(255, 255, 255, 0.2)"></path>
+                        <path d="M585.435,57.443L638.315,78.426" stroke="rgba(255, 255, 255, 0.2)"></path>
+                        <path d="M638.315,78.426L673.546,55.621" stroke="rgba(255, 255, 255, 0.2)"></path>
+                        <path d="M673.546,55.621L728.681,73.711" stroke="rgba(255, 255, 255, 0.2)"></path>
+                    </g>
                 </g>
-            </g>
-            <g>
-                <g class="Cas">
-                    <circle cx="569.7213575132278" cy="105.8509408339775" r="5.1466666666666665"
-                        opacity="0.8805333333333334" style="fill: rgb(255, 235, 216);"></circle>
-                    <circle cx="585.4347288110133" cy="57.44339010958057" r="5.173333333333334"
-                        opacity="0.8842666666666666" style="fill: rgb(255, 235, 216);"></circle>
-                    <circle cx="638.3153932833236" cy="78.42615154531833" r="5.233333333333333"
-                        opacity="0.8926666666666667" style="fill: rgb(255, 235, 216);"></circle>
-                    <circle cx="673.5461970873979" cy="55.62093154781244" r="4.893333333333333"
-                        opacity="0.8450666666666666" style="fill: rgb(255, 235, 216);"></circle>
-                    <circle cx="728.6812080476424" cy="73.71062518018795" r="4.433333333333334"
-                        opacity="0.7806666666666666" style="fill: rgb(255, 235, 216);"></circle>
+                <g>
+                    <g class="Cas">
+                        <circle cx="569.7213575132278" cy="105.8509408339775" r="5.1466666666666665"
+                            opacity="0.8805333333333334" style="fill: rgb(255, 235, 216);"></circle>
+                        <circle cx="585.4347288110133" cy="57.44339010958057" r="5.173333333333334"
+                            opacity="0.8842666666666666" style="fill: rgb(255, 235, 216);"></circle>
+                        <circle cx="638.3153932833236" cy="78.42615154531833" r="5.233333333333333"
+                            opacity="0.8926666666666667" style="fill: rgb(255, 235, 216);"></circle>
+                        <circle cx="673.5461970873979" cy="55.62093154781244" r="4.893333333333333"
+                            opacity="0.8450666666666666" style="fill: rgb(255, 235, 216);"></circle>
+                        <circle cx="728.6812080476424" cy="73.71062518018795" r="4.433333333333334"
+                            opacity="0.7806666666666666" style="fill: rgb(255, 235, 216);"></circle>
+                    </g>
                 </g>
-            </g>
-        </svg>
-    </a>
-    <h1 class="h1-spaced">Gallery</h1>
-    <main class="planets-wrapper">
-        <div class="planet-container">
-            <a href="//github.com" target="_blank" class="planet-link">
-                <img src="./assets/fibtree.png" alt="Fibonacci Tree program screenshot">
-            </a>
-            <span class="planet-link-label">Fibonacci Tree</span>
-        </div>
-        <div class="planet-container">
-            <a href="//github.com" target="_blank" class="planet-link">
-                <img src="./assets/terrain.png" alt="Fibonacci Tree program screenshot">
-            </a>
-            <span class="planet-link-label">OpenGL Procedural Terrain</span>
-        </div>
-        <div class="planet-container">
-            <a href="//github.com" target="_blank" class="planet-link">
-                <img src="./assets/polaris.png" alt="Fibonacci Tree program screenshot">
-            </a>
-            <span class="planet-link-label">Polaris App</span>
-        </div>
-        <div class="planet-container">
-            <a href="//github.com" target="_blank" class="planet-link">
-                <img src="./assets/musicrider.png" alt="Fibonacci Tree program screenshot">
-            </a>
-            <span class="planet-link-label">Music Rider</span>
-        </div>
-        <div class="planet-container">
-            <a href="//github.com" target="_blank" class="planet-link">
-                <img src="./assets/fibtree.png" alt="Fibonacci Tree program screenshot">
-            </a>
-            <span class="planet-link-label">Fibonacci Tree</span>
-        </div>
-    </main>
+            </svg>
+        </a>
+        <h1 class="h1-spaced">Gallery</h1>
+        <main class="planets-wrapper">
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/Fibonacci-Spring-Tree" target="_blank" class="planet-link">
+                    <img src="./assets/fibtree.png"
+                        alt="Screenshot of a tree generated and rendered using Fibonacci Spring Tree app">
+                </a>
+                <span class="planet-link-label">Fibonacci Spring Tree</span>
+            </div>
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/3Dterrain-OpenGL" target="_blank" class="planet-link">
+                    <img src="./assets/terrain.png"
+                        alt="Screenshot of green terrain generated and rendered using terrain app">
+                </a>
+                <span class="planet-link-label">Procedural Terrain</span>
+            </div>
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/polaris-SFML" target="_blank" class="planet-link">
+                    <img src="./assets/polaris.png" alt="Screenshot of the UI of the Polaris app">
+                </a>
+                <span class="planet-link-label">Polaris App</span>
+            </div>
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/NASAFlame" target="_blank" class="planet-link">
+                    <img src="./assets/nasaflame.png"
+                        alt="Screenshot of an example flame generated and rendered using flame rendering app">
+                </a>
+                <span class="planet-link-label">Flame Renderer</span>
+            </div>
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/music-rider-SFML" target="_blank" class="planet-link">
+                    <img src="./assets/musicrider.png"
+                        alt="Screenshot of Music Rider gameplay showing a cube jumping over obstacles">
+                </a>
+                <span class="planet-link-label">Music Rider</span>
+            </div>
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/BadApple" target="_blank" class="planet-link">
+                    <img src="./assets/badapple.png"
+                        alt="Screenshot of a video frame rendered using Bad Apple app that turns colors into text symbols in a computer terminal">
+                </a>
+                <span class="planet-link-label">Bad Apple!!</span>
+            </div>
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/langtons-ant-SFML" target="_blank" class="planet-link">
+                    <img src="./assets/langtonant.png"
+                        alt="Screenshot of an example image generated and rendered using Langton's Ant app">
+                </a>
+                <span class="planet-link-label">Langton's Ant</span>
+            </div>
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/yoisho-Java" target="_blank" class="planet-link">
+                    <img src="./assets/yoisho.png"
+                        alt="Screenshot of a Minecraft chat depicting the UI of the Minecraft Warps Plugin">
+                </a>
+                <span class="planet-link-label">Minecraft Warps Plugin</span>
+            </div>
+            <div class="planet-container">
+                <a href="https://github.com/sarahayu/warpsmod" target="_blank" class="planet-link">
+                    <img src="./assets/warpsmod.png"
+                        alt="Screenshot of a Minecraft chat depicting the UI of the Minecraft Warps Mod">
+                </a>
+                <span class="planet-link-label">24-Hour Minecraft Mod</span>
+            </div>
+        </main>
+    </div>
 </body>

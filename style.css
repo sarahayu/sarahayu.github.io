@@ -1,6 +1,8 @@
 :root {
     --primary-700: hsl(240, 73%, 10%);
+    --neutral-300: hsl(0, 0%, 83%);
     --neutral-400: hsl(0, 0%, 100%);
+    --accent-300: hsl(39, 100%, 40%);
     --accent-400: hsl(39, 100%, 50%);
 
     --background: var(--primary-700);
@@ -10,9 +12,19 @@
     color: var(--neutral-400);
 }
 
+::selection {
+    color: var(--neutral-400);
+    background-color: var(--accent-300);
+}
+
+html {
+    height: 100%;
+}
+
 body {
     background-color: var(--background);
     width: 100%;
+    height: 100%;
     cursor: default;
     overflow-x: hidden;
 }
@@ -47,6 +59,10 @@ main {
     letter-spacing: 0.05em;
     padding-inline: max(calc((100% - 50rem) / 2), 1rem);
     margin-top: 5rem;
+}
+
+p {
+    color: var(--neutral-300);
 }
 
 #sky {
@@ -90,16 +106,8 @@ main {
 .const-let {
     font-family: 'Tangerine', cursive;
     font-weight: bold;
-    font-size: 2.3vh;
     dominant-baseline: middle;
     text-anchor: middle;
-}
-
-
-.const-let.hovered {
-    font-size: 6.9vh;
-    fill: var(--accent-400);
-    transition: fill 0s linear 0.2s;
 }
 
 .const-label {
@@ -167,32 +175,29 @@ main {
 }
 
 .h1-spaced {
-    margin-top: 1em;
+    padding-top: 1em;
 }
 
-.const-page::before {
-    content: '';
-    inset: 0;
-    position: fixed;
+.const-page {
+    min-height: 100vh;
+
+    /* prevent collapsing margins */
+    padding: 0.05px;
+}
+
+.parallax-slider {
+    opacity: 0.1;
     mix-blend-mode: screen;
-    background-size: cover;
-    z-index: -1;
-    opacity: 10%;
-}
-
-.const-page.draco::before {
-    background-image: url(./assets/draco.png);
-}
-
-.const-page.cygnus::before {
-    background-image: url(./assets/cygnus.png);
 }
 
 main.planets-wrapper {
-    margin-top: 3rem;
+    margin-top: 5rem;
     padding-inline: calc((100% - 40rem) / 2);
+
+    --orbit-buffer: 18rem;
+    margin-bottom: var(--orbit-buffer);
     overflow: clip;
-    overflow-clip-margin: 20rem;
+    overflow-clip-margin: padding-box var(--orbit-buffer); 
 }
 
 .planet-container {
@@ -206,7 +211,7 @@ main.planets-wrapper {
 
 .planet-container:nth-child(odd)::before {
     content: '';
-    width: 300vw;
+    width: 200vw;
     z-index: -1;
     border: none;
     border-top: 2px dashed white;

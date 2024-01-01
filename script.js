@@ -33,6 +33,17 @@ const op = r.copy().range([1, 0.3])
 
 let north = [-0.0010782980749916567, 0.09320250541074836]
 
+// modified from https://stackoverflow.com/a/21015393
+function getStarTextOffsetCentered(text, idx, sizePX) {
+    const font = `bold ${ sizePX }px Tangerine`
+    // re-use canvas object for better performance
+    const canvas = getStarTextOffsetCentered.canvas || (getStarTextOffsetCentered.canvas = document.createElement("canvas"));
+    const context = canvas.getContext("2d");
+    context.font = font;
+    const metrics = -context.measureText(text).width / 2 + context.measureText(text.slice(0, idx)).width + context.measureText(text[idx]).width / 2;
+    return metrics;
+}
+
 let grid = svg
     .append('g')
     .attr('class', 'star-grid')
@@ -74,7 +85,6 @@ svg.append('g')
         const constBB = constElem.append('g')
         const constOthers = constElem.append('g')
 
-        constBB.append('g')
         for (let i = 0; constData.lines && i < constData.lines.length; i += 4) {
             constBB
                 .append('path')
@@ -85,40 +95,39 @@ svg.append('g')
         }
 
         constData.fullconst && constBB
-            .append('g')
             .append('text')
             .text(constData.fullconst)
             .attr('class', constData.const + '-label const-label ignore-pointer')
             .style('transform', `translate(${x(constData.label_center[0])}px,${y(constData.label_center[1])}px) rotate(${constData.label_rot}deg)`)
 
         constOthers
-            .append('g')
             .selectAll('constStars')
             .data(constData.stars || [])
             .join('circle')
             .attr('class', constData.const + '-star const-star ignore-pointer')
-            .attr('cx', function (d) { return x(d.x); })
-            .attr('cy', function (d) { return y(d.y); })
-            .attr('r', function (d) { return r(d.mag); })
-            .attr('opacity', function (d) { return op(d.mag); })
+            .attr('cx', d => x(d.x))
+            .attr('cy', d => y(d.y))
+            .attr('r', d => r(d.mag))
+            .attr('opacity', d => op(d.mag))
 
         constOthers
-            .append('g')
             .selectAll('constLets')
             .data(constData.letters || [])
             .join('text')
             .attr('class', constData.const + '-let const-let ignore-pointer')
-            .attr('x', function (d) { return x(d.pos[0]) + 20 * Math.sin(degToRad * d.offset); })
-            .attr('y', function (d) { return y(d.pos[1]) - 20 * Math.cos(degToRad * d.offset) + 3; })
-            .text(function (d) { return d.let; })
+            .attr('x', d => x(d.pos[0]) + 20 * Math.sin(degToRad * d.offset))
+            .attr('y', d => y(d.pos[1]) - 20 * Math.cos(degToRad * d.offset) + 3)
+            .attr('fill', '#ffffff')
+            .attr('font-size', 0.023 * height)
+            .text(d => d.let)
 
         sub && constOthers
-            .append('g')
-            .style('transform', `translate(${x(constData.center[0])}px,${y(constData.center[1])}px)`)
             .append('text')
-            .text(sub)
+            .attr('x', x(constData.center[0]))
+            .attr('y', y(constData.center[1]))
             .attr('class', constData.const + '-sub const-sub ignore-pointer')
             .style('opacity', 0)
+            .text(sub)
 
         if (!(constData.const in actionLinks)) {
             constBB.classed('ignore-pointer', true)
@@ -128,71 +137,70 @@ svg.append('g')
         constBB
             .attr('tabindex', 0)
             .attr('class', 'const-group-bb')
-            .on('mouseenter focus', (_, d) => {
+            .on('mouseenter focus', () => {
                 constElem
-                    .selectAll(`.${d.const}-let`)
-                    .classed('hovered', true)
+                    .selectAll(`.${constData.const}-let`)
                     .transition()
                     .duration(250)
                     .ease(d3.easeCubicOut)
-                    .attr('x', function (dd, i) { return x(d.center[0]) + (i - d.letters.length / 2) * 25; })
-                    .attr('y', function (dd, i) { return y(d.center[1]); })
+                    .attr('x', (_, i) => { return x(constData.center[0]) + getStarTextOffsetCentered(constData.letters.map(d => d.let).join(''), i, 0.069 * height) })
+                    .attr('y', (_, i) => y(constData.center[1]))
                     .attr('fill', '#ffa500')
+                    .attr('font-size', 0.069 * height)
 
                 constElem
-                    .selectAll(`.${d.const}-label`)
+                    .selectAll(`.${constData.const}-label`)
                     .style('visibility', 'hidden')
 
                 constElem
-                    .selectAll(`.${d.const}-star`)
+                    .selectAll(`.${constData.const}-star`)
                     .transition()
                     .duration(250)
                     .ease(d3.easeCubicOut)
-                    .attr('cx', function (d) { return x(d.newX); })
-                    .attr('cy', function (d) { return y(d.newY); })
+                    .attr('cx', d => x(d.newX))
+                    .attr('cy', d => y(d.newY))
                     .attr('opacity', 0.17)
 
                 constElem
-                    .selectAll(`.${d.const}-sub`)
+                    .selectAll(`.${constData.const}-sub`)
                     .transition()
                     .duration(250)
                     .style('opacity', 0.5)
                     .style('transform', function () { return `translate(0, ${this.getBoundingClientRect().height * 1.3}px)` })
                     .attr('fill', '#ffa500')
             })
-            .on('mouseleave blur', (_, d) => {
+            .on('mouseleave blur', () => {
                 constElem
-                    .selectAll(`.${d.const}-let`)
-                    .classed('hovered', false)
+                    .selectAll(`.${constData.const}-let`)
                     .transition()
                     .duration(250)
                     .ease(d3.easeCubicOut)
-                    .attr('x', function (d) { return x(d.pos[0]) + 20 * Math.sin(degToRad * d.offset); })
-                    .attr('y', function (d) { return y(d.pos[1]) - 20 * Math.cos(degToRad * d.offset) + 3; })
+                    .attr('x', d => x(d.pos[0]) + 20 * Math.sin(degToRad * d.offset))
+                    .attr('y', d => y(d.pos[1]) - 20 * Math.cos(degToRad * d.offset) + 3)
                     .attr('fill', '#ffffff')
+                    .attr('font-size', 0.023 * height)
 
                 constElem
-                    .selectAll(`.${d.const}-label`)
+                    .selectAll(`.${constData.const}-label`)
                     .style('visibility', 'visible')
 
                 constElem
-                    .selectAll(`.${d.const}-star`)
+                    .selectAll(`.${constData.const}-star`)
                     .transition()
                     .duration(250)
                     .ease(d3.easeCubicOut)
-                    .attr('cx', function (d) { return x(d.x); })
-                    .attr('cy', function (d) { return y(d.y); })
-                    .attr('opacity', function (d) { return op(d.mag); })
+                    .attr('cx', d => x(d.x))
+                    .attr('cy', d => y(d.y))
+                    .attr('opacity', d => op(d.mag))
 
                 constElem
-                    .selectAll(`.${d.const}-sub`)
+                    .selectAll(`.${constData.const}-sub`)
                     .transition()
                     .duration(0)
                     .style('opacity', 0)
                     .style('transform', 'translate(0, 0)')
-                    // .attr('fill', '#ffffff')
             })
-            .on('click keypress', (e) => {
+            .on('click keypress', e => {
                 if (e.type == 'click' || (e.type == 'keypress' && e.key == 'Enter')) {
                     window.open(lnk, ext ? '_blank' : '_self')
                 }
