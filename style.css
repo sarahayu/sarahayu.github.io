@@ -25,7 +25,6 @@ body {
     background-color: var(--background);
     width: 100%;
     height: 100%;
-    cursor: default;
     overflow-x: hidden;
 }
 
@@ -47,6 +46,8 @@ h1.name {
     font-size: 9.4vh;
     padding-top: 20vh;
     font-weight: bold;
+    position: absolute;
+    width: 100%;
 }
 
 h1.name > :last-child {
@@ -63,6 +64,18 @@ main {
 
 p {
     color: var(--neutral-300);
+}
+
+a {
+    color: inherit;
+}
+
+a:focus-visible {
+    outline: 1px solid var(--accent-400);
+}
+
+.centered {
+    text-align: center;
 }
 
 #sky {
@@ -82,21 +95,12 @@ p {
     pointer-events: none;
 }
 
-.const-group-bb {
-    pointer-events: bounding-box;
-}
-
 .const-group-bb:focus {
     outline: none;
 }
 
 .const-group-bb:focus-visible {
     outline: 1px solid var(--accent-400);
-}
-
-
-.const-group-bb:hover {
-    cursor: pointer;
 }
 
 .const-star {
@@ -174,7 +178,7 @@ p {
     transform: rotate(-25deg);
 }
 
-.h1-spaced {
+.spaced {
     padding-top: 1em;
 }
 
@@ -196,8 +200,13 @@ main.planets-wrapper {
 
     --orbit-buffer: 18rem;
     margin-bottom: var(--orbit-buffer);
-    overflow: clip;
-    overflow-clip-margin: padding-box var(--orbit-buffer); 
+}
+
+@supports (overflow-clip-margin: padding-box) {
+    main.planets-wrapper {        
+        overflow: clip;
+        overflow-clip-margin: padding-box var(--orbit-buffer); 
+    }
 }
 
 .planet-container {
@@ -318,6 +327,55 @@ main.planets-wrapper {
     right: 0;
     transform: translate(5rem, 3rem);
 }
+
+.const-lets {
+    position: relative;
+    fill: red;
+}
+
+.ext-link-svg {
+    position: absolute;
+    fill: yellow;
+    top: 0;
+    left: 0;
+}
+
+.parallax {
+    position: relative;
+    z-index: 0;
+    display: grid;
+    grid-template-areas: "stack";
+}
+
+.parallax > * {
+    grid-area: stack;
+}
+
+.parallax-bg {
+    z-index: -1;
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    object-position: top;
+    object-fit: cover;
+    animation: parallax linear;
+    animation-timeline: scroll();
+    mix-blend-mode: screen;
+    opacity: 0.1;
+}
+
+@supports (animation-timeline: scroll()) {
+    .parallax-bg {        
+        height: calc(100% - 1000px);
+    }
+}
+
+@keyframes parallax {
+    to {
+        transform: translateY(1000px);
+    }
+}
+
 
 /* .ext-link:last-of-type {
     fill: red;

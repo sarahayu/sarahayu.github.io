@@ -10,13 +10,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,700;1,300&family=Roboto:wght@300;400&family=Tangerine:wght@700&display=swap"
         rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
     <title>Sarah Yuniar's Portfolio | About</title>
 </head>
 
-<body>
-    <div class="const-page" data-parallax="scroll" data-image-src="./assets/cygnus.png"  data-natural-width="324" data-natural-height="373">
+<body class="const-page parallax">
+    <div>
         <a href="./" class="home-btn" title="Home">
             <svg viewBox="560 45 180 70">
                 <g>
@@ -43,13 +41,17 @@
                 </g>
             </svg>
         </a>
-        <h1 class="h1-spaced">About</h1>
+        <h1 class="spaced">About Me</h1>
         <main>
             <p>I am a graduate student currently pursuing a Master's in Computer Science at University of California, Davis
                 and working at the UC Davis Center for Visualization. I received my Bachelor's in Computer Science and
-                Engineering in 2023, also at UC Davis. I have been programming since 2015 and mostly code in <b>C++</b> and <b>Python</b>,
-                but I occasionally use <b>Java</b>, <b>Javascript</b>, <b>HTML</b>, and <b>CSS</b>. My interests include computer graphics, astronomy,
+                Engineering in 2023, also at UC Davis. I have been programming since 2015 and mostly code in <b>C++</b> and
+                <b>Python</b>,
+                but I occasionally use <b>Java</b>, <b>Javascript</b>, <b>HTML</b>, and <b>CSS</b>. My interests include
+                computer graphics, astronomy,
                 mathematics, web development, video games, and music!</p>
+            <p class="centered spaced"><b><a href="./assets/Resume_Sarah_GH.pdf" target="_blank">My Resume</a></b></p>
         </main>
     </div>
+    <img class="parallax-bg" src="./assets/cygnus.png" alt="Background image of Cygnus constellation">
 </body>
